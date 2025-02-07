@@ -1,0 +1,49 @@
+// template 
+
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
+
+// interval between the animation frames
+int frame_delay =70;
+
+// Frame arrays (replace with your generated code from image2cpp)
+const unsigned char epd_bitmap__a_frm0_100 [] PROGMEM = {
+
+void setup() {
+
+  if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {  // Change i2c Value if required
+    Serial.println(F("SSD1306 allocation failed"));
+    for(;;);
+  }
+}
+
+void loop() {
+  
+  // Display each frame squentially
+    for (int frame = 0; frame < epd_bitmap_allArray_LEN; frame++) {
+  
+  // epd_bitmap__a_frm0_100
+  display.clearDisplay();
+  display.drawBitmap(32,0,epd_bitmap__a_frm0_100, 64, 64, 1);
+  display.display();
+  delay(frame_delay);
+
+  // epd_bitmap__a_frm1_100
+  display.clearDisplay();
+  display.drawBitmap(32,0,epd_bitmap__a_frm1_100, 64, 64, 1);
+  display.display();
+  delay(frame_delay);
+
+ // Repeat for all frames....
+}
+
+    // Optionally, you can adjust the frame delay here if needed
+    if (frame_delay > 50) frame_delay -= 20;
+}
+
